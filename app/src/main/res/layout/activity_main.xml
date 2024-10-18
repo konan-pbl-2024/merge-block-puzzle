@@ -4,23 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#333335"
+    android:backgroundTint="#43433E"
     tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:autoText="false"
+        android:outlineAmbientShadowColor="#C3C358"
+        android:outlineSpotShadowColor="#C1C150"
+        android:rotationX="21"
+        android:shadowColor="#F4FF81"
+        android:shadowDx="30"
+        android:shadowDy="0"
+        android:shadowRadius="0"
+        android:text="MERGE BROCK PUZZLE"
+        android:textColor="#ECE9EF"
+        android:textColorHighlight="#C17C7C"
+        android:textSize="40sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.245" />
 
     <Button
         android:id="@+id/start_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="157dp"
-        tools:layout_editor_absoluteY="482dp" />
+        android:layout_width="146dp"
+        android:layout_height="86dp"
+        android:text="PLAY"
+        android:textColorHighlight="#FAF8F8"
+        android:textColorLink="#C39C9C"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:rippleColor="#CA5959"
+        tools:layout_editor_absoluteX="192dp"
+        tools:layout_editor_absoluteY="600dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="481dp"
+        android:layout_height="56dp"
+        android:alpha="34"
+        android:rotation="-181"
+        android:rotationX="21"
+        android:rotationY="-181"
+        android:text="MERGE BROCK PUZZLE"
+        android:textColor="#DFCFB0"
+        android:textSize="43sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="237dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

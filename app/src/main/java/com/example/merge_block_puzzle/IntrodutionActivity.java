@@ -16,11 +16,11 @@ public class IntrodutionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_introdution);
         Button okButton=(Button)findViewById(R.id.button);
-        okButton.setOnClickListener(new View.OnClickListener()){
-            public void onClick(View ){
-
-            }
-        }
+//        okButton.setOnClickListener(new View.OnClickListener()){
+//            public void onClick(View ){
+//
+//            }
+//        }
     }
 
 

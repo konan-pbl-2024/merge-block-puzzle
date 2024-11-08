@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="782dp"
-        android:layout_height="739dp"
+        android:layout_width="891dp"
+        android:layout_height="829dp"
         android:rotation="90"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
         android:id="@+id/button"
         android:layout_width="139dp"
         android:layout_height="69dp"
-        android:text="次へ進む"
+        android:text="戻る"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

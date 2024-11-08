@@ -23,7 +23,7 @@ public class IntrodutionActivity extends AppCompatActivity {
         Button okButton=(Button)findViewById(R.id.button);
         okButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent intent = new Intent(IntrodutionActivity.this,PuzzleActivity.class);
+                Intent intent = new Intent(IntrodutionActivity.this,MainActivity.class);
                 startActivity(intent);
 
 

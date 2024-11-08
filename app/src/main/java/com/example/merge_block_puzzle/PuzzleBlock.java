@@ -16,7 +16,7 @@ public class PuzzleBlock extends ImageButton {
             R.drawable.block3,
             R.drawable.block4,
     };
-    private static final int BLOCK_SIZE = 300;
+    private static final int BLOCK_SIZE = 200;
 
     private static final int BLOCK_TYPE_COUNT = 3;
     private int posX;
@@ -46,14 +46,7 @@ public class PuzzleBlock extends ImageButton {
         this.setPadding(0, 0, 0, 0);
         this.setAdjustViewBounds(true);
 
-        // layout_widthとlayout_heightをwrap_contentに設定
         this.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
-
-        // this.setOnClickListener(v -> {
-        //     Toast.makeText(getContext(), "PuzzleBlockがクリックされました", Toast.LENGTH_SHORT).show();
-        //     // ここにパズルのロジックを追加
-        // });
-
     }
 
 
@@ -73,26 +66,15 @@ public class PuzzleBlock extends ImageButton {
     }
 
     public void setPosition(int x, int y) {
-        // RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) this.getLayoutParams();
-        // params.leftMargin = (int) x;
-        // params.topMargin = (int) y;
-        // this.setLayoutParams(params);
         this.posX = (int) x;
         this.posY = (int) y;
     }
 
     public int getPositionX() {
-        // RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) this.getLayoutParams();
-        // // java.lang.ClassCastException: android.widget.GridLayout$LayoutParams cannot be cast to android.widget.RelativeLayout$LayoutParams
-        // return params.leftMargin;
-        // return (int) params.leftMargin;
         return posX;
     }
 
     public int getPositionY() {
-        // RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) this.getLayoutParams();
-        // // return params.topMargin;
-        // return (int) params.topMargin;
         return posY;
     }
 

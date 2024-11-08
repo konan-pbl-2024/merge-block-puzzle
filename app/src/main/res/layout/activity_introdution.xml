@@ -14,9 +14,10 @@
         android:rotation="90"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.57"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/images" />
 
     <Button
@@ -30,21 +31,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.614" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="354dp"
-        android:layout_height="139dp"
-        android:background="#04000B"
-        android:text="ブロックが並んでてブロックをタップするとそれと同じ種類の繋がっているブロックが消えてスコアを得る"
-        android:textAlignment="center"
-        android:textColor="#F8F5F5"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.577"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.445" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

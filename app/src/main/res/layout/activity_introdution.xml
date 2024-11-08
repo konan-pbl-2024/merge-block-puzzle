@@ -24,6 +24,7 @@
         android:layout_height="139dp"
         android:background="#0B2D8E"
         android:text="ブロックが並んでてブロックをタップするとそれと同じ種類の繋がっているブロックが消えてスコアを得る"
+        android:textColor="#F8F5F5"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.577"

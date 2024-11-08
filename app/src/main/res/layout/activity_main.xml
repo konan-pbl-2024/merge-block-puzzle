@@ -8,6 +8,48 @@
     android:backgroundTint="#43433E"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="146dp"
+        android:layout_height="86dp"
+        android:text="PLAY"
+        android:textColorHighlight="#FAF8F8"
+        android:textColorLink="#C39C9C"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.792"
+        app:rippleColor="#CA5959" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="408dp"
+        android:layout_height="258dp"
+        android:layout_marginTop="540dp"
+        android:layout_marginEnd="76dp"
+        android:rotation="-330"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/orange_fire" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="288dp"
+        android:layout_height="351dp"
+        android:rotationX="180"
+        android:rotationY="180"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/blue_honoo" />
+
     <TextView
         android:id="@+id/text1"
         android:layout_width="388dp"
@@ -32,23 +74,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.256" />
 
-    <Button
-        android:id="@+id/start_button"
-        android:layout_width="146dp"
-        android:layout_height="86dp"
-        android:text="PLAY"
-        android:textColorHighlight="#FAF8F8"
-        android:textColorLink="#C39C9C"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.792"
-        app:rippleColor="#CA5959" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="394dp"
@@ -67,5 +92,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.291" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="341dp"
+        android:layout_height="383dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="348dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/blue_honoo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

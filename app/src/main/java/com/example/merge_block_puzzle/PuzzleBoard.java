@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class PuzzleBoard extends GridLayout {
-    private static final int BOARD_SIZE = 5;
+    private static final int BOARD_SIZE = 8;
     private PuzzleBlock[][] blocks;
     private int currentBlockTypeCount = 3;
 
@@ -38,8 +38,6 @@ public class PuzzleBoard extends GridLayout {
 
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
-                // blocks[i][j] = new PuzzleBlock(context);
-                // this.addView(blocks[i][j]);
                 PuzzleBlock block = new PuzzleBlock(context);
                 block.setPosition(j, i);
                 block.setOnBlockClickListener(new View.OnClickListener() {
@@ -55,38 +53,8 @@ public class PuzzleBoard extends GridLayout {
             }
         }
     }
-    /*
-        Button okButton = (Button)findViewById(R.id.button);
-        okButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                EditText editText = (EditText)findViewById(R.id.editText);
-                String inputStr = editText.getText().toString();
-                TextView textView1 = (TextView)findViewById(R.id.text);
-                textView1.setText(inputStr);
-            }
-        });
-        okButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                EditText editText = (EditText)findViewById(R.id.editText);
-                String inputStr = editText.getText().toString();
-                TextView textView1 = (TextView)findViewById(R.id.text);
-                textView1.setText(inputStr);
-            }
-        });
-     */
 
     public void blockListener(int i, int j) {
-        /*
-         * タップを通知する
-         * 幅優先探索を使って、クリックされたブロックと同じ色のブロックを探す
-         * その後、クリックされたブロックと同じ色のブロックを消す
-         * そして、上にあるブロックを下に詰める
-         * そして、新しいブロックを上に追加する
-         */
-
-        // タップを通知する
-//        Toast.makeText(getContext(), "PuzzleBlockがクリックされました", Toast.LENGTH_SHORT).show();
-
         // 色をデバッグ出力する
         for (int y = 0; y < BOARD_SIZE; y++) {
             for (int x = 0; x < BOARD_SIZE; x++) {
@@ -146,20 +114,9 @@ public class PuzzleBoard extends GridLayout {
             for (int y = 0; y < BOARD_SIZE - 1; y++) {
                 for (int x = 0; x < BOARD_SIZE; x++) {
                     if (blocks[y][x].getBlockType() != -1 && blocks[y + 1][x].getBlockType() == -1) {
-                        // for (int k = y - 1; k >= 0; k--) {
-                        //     if (blocks[k][x] != null) {
-                        //         blocks[y][x] = blocks[k][x];
-                        //         blocks[y][x].setPosition(x, y);
-                        //         blocks[k][x] = null;
-                        //         break;
-                        //     }
-                        // }
-                        // blocks[y][x] = blocks[y - 1][x];
-                        // blocks[y][x].setPosition(x, y);
-                        // blocks[y - 1][x] = null;
                         blocks[y + 1][x].setBlockType(blocks[y][x].getBlockType());
                         blocks[y][x].setBlockType(-1);
-                        //                    System.out.println("swap: " + x + ", " + y + " and " + x + ", " + (y - 1));
+                        // System.out.println("swap: " + x + ", " + y + " and " + x + ", " + (y - 1));
                     }
                 }
             }
@@ -169,10 +126,8 @@ public class PuzzleBoard extends GridLayout {
         for (int x = 0; x < BOARD_SIZE; x++) {
             for (int y = 0; y < BOARD_SIZE; y++) {
                 if (blocks[y][x].getBlockType() == -1) {
-                    // blocks[y][x] = block;
-                    // this.addView(block);
                     blocks[y][x].setBlockType((int) (Math.random() * currentBlockTypeCount));
-//                    System.out.println("add: " + x + ", " + y + " color: " + blocks[y][x].getBlockType());
+                    // System.out.println("add: " + x + ", " + y + " color: " + blocks[y][x].getBlockType());
                 }
             }
         }

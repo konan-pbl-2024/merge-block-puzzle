@@ -14,7 +14,6 @@ public class PuzzleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_puzzle);
 
         GridLayout gridLayout = findViewById(R.id.puzzleArea);

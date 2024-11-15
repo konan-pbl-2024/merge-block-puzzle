@@ -10,9 +10,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class PuzzleActivity extends AppCompatActivity {
 
+
     private PuzzleBoard puzzleBoard;
     private TextView scoreTextView;
     private TextView clicksRemainingTextView;
+
+    //com.example.merge_block_puzzle.PuzzleBoard puzzleBoard;
+    //public static int score = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +58,9 @@ public class PuzzleActivity extends AppCompatActivity {
         });
     }
 
+
     public int getScore() {
         return puzzleBoard.getScore();
     }
 }
+

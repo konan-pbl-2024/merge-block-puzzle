@@ -20,6 +20,8 @@ public class PuzzleBoard extends GridLayout {
     private int score = 0;
     private OnScoreChangeListener scoreChangeListener;
     private OnClicksRemainingListener clicksRemainingListener;
+//     private int currentBlockTypeCount = 3;
+//    private int score = 0;
 
     public PuzzleBoard(Context context) {
         super(context);
@@ -34,6 +36,11 @@ public class PuzzleBoard extends GridLayout {
     public PuzzleBoard(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
+    }
+
+    public int getScore() {
+//        return score;
+        return 0;
     }
 
     private void init(Context context) {
@@ -184,6 +191,9 @@ public class PuzzleBoard extends GridLayout {
 
     public interface OnScoreChangeListener {
         void onScoreChanged(int newScore);
+        // 得点を加算
+//        score += (1 << targetColor) * disappearedBlockCount * disappearedBlockCount;
+//         PuzzleActivity.score += (1 << targetColor) * disappearedBlockCount * disappearedBlockCount;
     }
 
     public void setOnClicksRemainingListener(OnClicksRemainingListener listener) {

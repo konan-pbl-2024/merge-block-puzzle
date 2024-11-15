@@ -2,7 +2,6 @@ package com.example.merge_block_puzzle;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.Toast;
@@ -21,8 +20,6 @@ public class PuzzleBoard extends GridLayout {
     private int score = 0;
     private OnScoreChangeListener scoreChangeListener;
     private OnClicksRemainingListener clicksRemainingListener;
-//     private int currentBlockTypeCount = 3;
-//    private int score = 0;
 
     public PuzzleBoard(Context context) {
         super(context);
@@ -41,7 +38,6 @@ public class PuzzleBoard extends GridLayout {
 
     public int getScore() {
         return score;
-//        return 0;
     }
 
     private void init(Context context) {
@@ -49,7 +45,6 @@ public class PuzzleBoard extends GridLayout {
         this.setColumnCount(BOARD_SIZE);
         this.setAlignmentMode(GridLayout.ALIGN_BOUNDS);
         this.setUseDefaultMargins(true);
-        this.setGravity(Gravity.CENTER);
 
         blocks = new PuzzleBlock[BOARD_SIZE][BOARD_SIZE];
 
@@ -57,29 +52,31 @@ public class PuzzleBoard extends GridLayout {
         int blockSize = screenWidth / (BOARD_SIZE + 2);
 
         // ブロックを作成してグリッドに配置
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            for (int j = 0; j < BOARD_SIZE; j++) {
+        for (int row = 0; row < BOARD_SIZE; row++) {
+            for (int col = 0; col < BOARD_SIZE; col++) {
                 final PuzzleBlock block = new PuzzleBlock(context);
-                block.setPosition(j, i);
+                block.setPosition(col, row);
                 block.setOnBlockClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (clickCount < MAX_CLICKS) {
                             int row = block.getPositionY();
                             int col = block.getPositionX();
-                            blockListener(col, row);
-                            clickCount++;
-                            if (clicksRemainingListener != null) {
-                                clicksRemainingListener.onClicksRemaining(MAX_CLICKS - clickCount);
-                            }
-                            if (clickCount >= MAX_CLICKS) {
-                                // クリック制限に達した場合、全てのブロックのクリックを無効化
-                                disableAllBlocks();
+                            boolean validMove = blockListener(row, col);
+                            if (validMove) {
+                                clickCount++;
+                                if (clicksRemainingListener != null) {
+                                    clicksRemainingListener.onClicksRemaining(MAX_CLICKS - clickCount);
+                                }
+                                if (clickCount >= MAX_CLICKS) {
+                                    // クリック制限に達した場合、全てのブロックのクリックを無効化
+                                    disableAllBlocks();
+                                }
                             }
                         }
                     }
                 });
-                blocks[i][j] = block;
+                blocks[row][col] = block;
 
                 // ブロックのサイズを設定
                 GridLayout.LayoutParams blockParams = new GridLayout.LayoutParams();
@@ -93,76 +90,78 @@ public class PuzzleBoard extends GridLayout {
         }
     }
 
-    private void setGravity(int center) {
-    }
-
     private void disableAllBlocks() {
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            for (int j = 0; j < BOARD_SIZE; j++) {
-                blocks[i][j].setClickable(false);
+        for (int row = 0; row < BOARD_SIZE; row++) {
+            for (int col = 0; col < BOARD_SIZE; col++) {
+                blocks[row][col].setClickable(false);
             }
         }
     }
 
-    public void blockListener(int i, int j) {
+    public boolean blockListener(int row, int col) {
+        // 消えたブロックの数を初期化（クリックしたブロックは除外するため0）
         int disappearedBlockCount = 0;
 
         // クリックされたブロックと同じ色のブロックを探す
         boolean[][] visited = new boolean[BOARD_SIZE][BOARD_SIZE];
         Queue<int[]> queue = new LinkedList<>();
         int[] directions = {-1, 0, 1, 0, -1};
-        int targetColor = blocks[j][i].getBlockType();
+        int targetColor = blocks[row][col].getBlockType();
 
-        queue.add(new int[]{j, i});
-        visited[j][i] = true;
+        queue.add(new int[]{row, col});
+        visited[row][col] = true;
 
         while (!queue.isEmpty()) {
             int[] current = queue.poll();
-            int x = current[1];
-            int y = current[0];
+            int r = current[0]; // row
+            int c = current[1]; // col
+
+            // クリックしたブロックは除外
+            if (r != row || c != col) {
+                disappearedBlockCount++;
+            }
 
             for (int d = 0; d < 4; d++) {
-                int newX = x + directions[d];
-                int newY = y + directions[d + 1];
+                int newR = r + directions[d];
+                int newC = c + directions[d + 1];
 
-                if (newX >= 0 && newX < BOARD_SIZE && newY >= 0 && newY < BOARD_SIZE &&
-                        !visited[newY][newX] && blocks[newY][newX].getBlockType() == targetColor) {
-                    queue.add(new int[]{newY, newX});
-                    disappearedBlockCount++;
-                    visited[newY][newX] = true;
+                if (newR >= 0 && newR < BOARD_SIZE && newC >= 0 && newC < BOARD_SIZE &&
+                        !visited[newR][newC] && blocks[newR][newC].getBlockType() == targetColor) {
+                    queue.add(new int[]{newR, newC});
+                    visited[newR][newC] = true;
                 }
             }
         }
-        visited[j][i] = false;
 
-        if (disappearedBlockCount < 2) {
+        // 消えるブロックが1つ未満の場合（クリックしたブロックを除外しているため）
+        if (disappearedBlockCount < 1) {
             // 2つ以上つながっていないと消せないことをToastで表示
             Toast.makeText(getContext(), "2つ以上つなげてください", Toast.LENGTH_SHORT).show();
-            return;
+            return false; // 操作は無効
         }
 
         // クリックされたブロックのタイプを1つ上げる（最大タイプを超えないように）
-        if (blocks[j][i].getBlockType() < TOTAL_BLOCK_TYPES - 1) {
-            blocks[j][i].setBlockType(blocks[j][i].getBlockType() + 1);
+        if (blocks[row][col].getBlockType() < TOTAL_BLOCK_TYPES - 1) {
+            blocks[row][col].setBlockType(blocks[row][col].getBlockType() + 1);
         }
 
-        // クリックされたブロックと同じ色のブロックを消す
-        for (int x = 0; x < BOARD_SIZE; x++) {
-            for (int y = 0; y < BOARD_SIZE; y++) {
-                if (visited[y][x]) {
-                    blocks[y][x].setBlockType(-1);
+        // クリックされたブロックと同じ色のブロックを消す（クリックしたブロックは除外）
+        for (int r = 0; r < BOARD_SIZE; r++) {
+            for (int c = 0; c < BOARD_SIZE; c++) {
+                if (visited[r][c] && !(r == row && c == col)) {
+                    blocks[r][c].setBlockType(-1);
                 }
             }
         }
 
         // ブロックを下に詰める
-        for (int x = 0; x < BOARD_SIZE; x++) {
+        for (int colIdx = 0; colIdx < BOARD_SIZE; colIdx++) {
             int emptyRow = BOARD_SIZE - 1;
-            for (int y = BOARD_SIZE - 1; y >= 0; y--) {
-                if (blocks[y][x].getBlockType() != -1) {
-                    if (y != emptyRow) {
-                        blocks[emptyRow][x].setBlockType(blocks[y][x].getBlockType());
-                        blocks[y][x].setBlockType(-1);
+            for (int rowIdx = BOARD_SIZE - 1; rowIdx >= 0; rowIdx--) {
+                if (blocks[rowIdx][colIdx].getBlockType() != -1) {
+                    if (rowIdx != emptyRow) {
+                        blocks[emptyRow][colIdx].setBlockType(blocks[rowIdx][colIdx].getBlockType());
+                        blocks[rowIdx][colIdx].setBlockType(-1);
                     }
                     emptyRow--;
                 }
@@ -170,27 +169,25 @@ public class PuzzleBoard extends GridLayout {
         }
 
         // 新しいブロックを上に追加（初期の3色のみ）
-        for (int x = 0; x < BOARD_SIZE; x++) {
-            for (int y = 0; y < BOARD_SIZE; y++) {
-                if (blocks[y][x].getBlockType() == -1) {
-                    blocks[y][x].setBlockType((int) (Math.random() * INITIAL_BLOCK_TYPES));
+        for (int colIdx = 0; colIdx < BOARD_SIZE; colIdx++) {
+            for (int rowIdx = 0; rowIdx < BOARD_SIZE; rowIdx++) {
+                if (blocks[rowIdx][colIdx].getBlockType() == -1) {
+                    blocks[rowIdx][colIdx].setBlockType((int) (Math.random() * INITIAL_BLOCK_TYPES));
                 }
             }
         }
 
         // スコアを更新（ブロックタイプが高いほど高得点）
         int blockValue = targetColor + 1; // ブロックタイプは0から始まるため+1
-        score += blockValue * disappearedBlockCount * disappearedBlockCount;
+        score += blockValue * (disappearedBlockCount + 1) * (disappearedBlockCount + 1);
 
         // スコア変更をリスナーに通知
         if (scoreChangeListener != null) {
             scoreChangeListener.onScoreChanged(score);
         }
-    }
 
-//    public int getScore() {
-//        return score;
-//    }
+        return true; // 操作は有効
+    }
 
     public void setOnScoreChangeListener(OnScoreChangeListener listener) {
         this.scoreChangeListener = listener;
@@ -198,9 +195,6 @@ public class PuzzleBoard extends GridLayout {
 
     public interface OnScoreChangeListener {
         void onScoreChanged(int newScore);
-        // 得点を加算
-//        score += (1 << targetColor) * disappearedBlockCount * disappearedBlockCount;
-//         PuzzleActivity.score += (1 << targetColor) * disappearedBlockCount * disappearedBlockCount;
     }
 
     public void setOnClicksRemainingListener(OnClicksRemainingListener listener) {

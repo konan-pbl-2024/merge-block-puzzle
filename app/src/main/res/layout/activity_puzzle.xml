@@ -21,8 +21,8 @@
 
     <TextView
         android:id="@+id/scoreTextView"
-        android:layout_width="144dp"
-        android:layout_height="59dp"
+        android:layout_width="142dp"
+        android:layout_height="99dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/delagothicone_regular"

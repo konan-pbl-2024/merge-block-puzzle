@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".PuzzleActivity">
 
+    <TextView
+        android:id="@+id/scoreDesc"
+        android:layout_width="213dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="500dp"
+        android:text="スコア:         "
+        android:textSize="60sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/puzzleArea"
         android:layout_width="409dp"
@@ -17,12 +29,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="213dp"
-            android:layout_height="86dp"
-            android:text="TextView"
-            app:layout_column="1"
-            app:layout_row="0" />
     </androidx.gridlayout.widget.GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

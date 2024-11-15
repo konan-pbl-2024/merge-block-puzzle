@@ -1,9 +1,11 @@
 package com.example.merge_block_puzzle;
 
 import android.content.Context;
-import androidx.appcompat.widget.AppCompatButton;
+import android.widget.ImageButton;
 
-public class PuzzleBlock extends AppCompatButton {
+import androidx.appcompat.widget.AppCompatImageButton;
+
+public class PuzzleBlock extends AppCompatImageButton {
     private int blockType;
     private int positionX;
     private int positionY;
@@ -28,28 +30,28 @@ public class PuzzleBlock extends AppCompatButton {
     }
 
     private void updateAppearance() {
-        // ブロックタイプに応じて外観を変更
+        // ブロックタイプに応じて画像を設定
         switch (blockType) {
             case 0:
-                setBackgroundColor(0xFFE57373); // 赤
+                setImageResource(R.drawable.block1); // 赤色のブロック画像
                 break;
             case 1:
-                setBackgroundColor(0xFF81C784); // 緑
+                setImageResource(R.drawable.block4); // 緑色のブロック画像
                 break;
             case 2:
-                setBackgroundColor(0xFF64B5F6); // 青
+                setImageResource(R.drawable.blueblock); // 青色のブロック画像
                 break;
             case 3:
-                setBackgroundColor(0xFFFFD54F); // 黄色
+                setImageResource(R.drawable.kiiro); // 黄色のブロック画像
                 break;
             case 4:
-                setBackgroundColor(0xFFBA68C8); // 紫
+                setImageResource(R.drawable.murasaki2); // 紫色のブロック画像
                 break;
             case 5:
-                setBackgroundColor(0xFFA1887F); // 茶色
+                setImageResource(R.drawable.orenge); // 茶色のブロック画像
                 break;
             default:
-                setBackgroundColor(0x00000000); // 透明
+                setImageDrawable(null); // 透明（またはデフォルトの画像を設定）
                 break;
         }
     }

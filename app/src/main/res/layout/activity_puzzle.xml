@@ -1,33 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/puzzle"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".PuzzleActivity">
+    android:layout_height="match_parent">
 
+    <!-- スコア表示用のTextView -->
     <TextView
-        android:id="@+id/scoreDesc"
-        android:layout_width="213dp"
-        android:layout_height="86dp"
-        android:layout_marginTop="500dp"
-        android:text="スコア:         "
-        android:textSize="60sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/scoreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="スコア: 0"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp" />
 
-    <androidx.gridlayout.widget.GridLayout
-        android:id="@+id/puzzleArea"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        app:alignmentMode="alignMargins"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <!-- 残り操作回数表示用のTextView -->
+    <TextView
+        android:id="@+id/clicksRemainingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="残り操作回数: 20"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp" />
 
-    </androidx.gridlayout.widget.GridLayout>
+    <!-- PuzzleBoardを配置 -->
+    <com.example.merge_block_puzzle.PuzzleBoard
+        android:id="@+id/puzzleBoard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

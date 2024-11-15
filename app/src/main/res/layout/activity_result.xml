@@ -43,6 +43,7 @@
         android:gravity="center_horizontal|top|center_vertical"
         android:text="100"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#E0D896"
         android:textColorHint="#F3B806"
         android:textColorLink="#FFEB3B"
         android:textSize="48sp"

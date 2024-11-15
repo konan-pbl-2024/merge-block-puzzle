@@ -16,7 +16,7 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         scoreTextView = findViewById(R.id.scoreView);
-
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaa");
         // Intentからスコアを取得してTextViewに設定
         int finalScore = getIntent().getIntExtra("FINAL_SCORE", 0);
         scoreTextView.setText("最終スコア: " + finalScore);

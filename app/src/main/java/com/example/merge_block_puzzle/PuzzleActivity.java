@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.gridlayout.widget.GridLayout;
 
 public class PuzzleActivity extends AppCompatActivity {
+    com.example.merge_block_puzzle.PuzzleBoard puzzleBoard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +18,7 @@ public class PuzzleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_puzzle);
 
         GridLayout gridLayout = findViewById(R.id.puzzleArea);
-        com.example.merge_block_puzzle.PuzzleBoard puzzleBoard = new com.example.merge_block_puzzle.PuzzleBoard(this);
+        puzzleBoard = new com.example.merge_block_puzzle.PuzzleBoard(this);
         gridLayout.addView(puzzleBoard);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.puzzle), (v, insets) -> {
@@ -25,5 +26,9 @@ public class PuzzleActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    public int getScore() {
+        return puzzleBoard.getScore();
     }
 }

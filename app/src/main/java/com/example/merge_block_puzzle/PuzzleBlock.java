@@ -12,13 +12,18 @@ public class PuzzleBlock extends ImageButton {
     private int blockType;
     private static final int[] imageResourceIds = {
             R.drawable.block1,
-//            R.drawable.block2,
+            R.drawable.block2,
+            R.drawable.block3,
+            R.drawable.block4,
+            R.drawable.block1,
+            R.drawable.block2,
             R.drawable.block3,
             R.drawable.block4,
     };
     private static final int BLOCK_SIZE = 200;
 
     private static final int BLOCK_TYPE_COUNT = 3;
+    private static final int MAX_BLOCK_NUM = imageResourceIds.length;
     private int posX;
     private int posY;
 
@@ -80,5 +85,9 @@ public class PuzzleBlock extends ImageButton {
 
     public void printInfo() {
         System.out.println("posX: " + posX + ", posY: " + posY + ", blockType: " + blockType);
+    }
+
+    public int getMaxBlockNum() {
+        return MAX_BLOCK_NUM;
     }
 }

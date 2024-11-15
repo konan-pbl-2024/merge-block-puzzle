@@ -10,9 +10,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class PuzzleBoard extends GridLayout {
-    private static final int BOARD_SIZE = 8;
+    private static final int BOARD_SIZE = 6;
     private PuzzleBlock[][] blocks;
     private int currentBlockTypeCount = 3;
+    private int score = 0;
 
     public PuzzleBoard(Context context) {
         super(context);
@@ -29,12 +30,14 @@ public class PuzzleBoard extends GridLayout {
         init(context);
     }
 
+    public int getScore() {
+        return score;
+    }
+
     private void init(Context context) {
         this.setRowCount(BOARD_SIZE);
         this.setColumnCount(BOARD_SIZE);
         blocks = new PuzzleBlock[BOARD_SIZE][BOARD_SIZE];
-
-
 
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
@@ -55,6 +58,8 @@ public class PuzzleBoard extends GridLayout {
     }
 
     public void blockListener(int i, int j) {
+        int disappearedBlockCount = 0;
+
         // 色をデバッグ出力する
         for (int y = 0; y < BOARD_SIZE; y++) {
             for (int x = 0; x < BOARD_SIZE; x++) {
@@ -87,6 +92,8 @@ public class PuzzleBoard extends GridLayout {
                 }
             }
         }
+        visited[j][i] = false;
+        blocks[j][i].setBlockType((blocks[j][i].getBlockType() + 1));
 
         // visitedをデバッグ出力する
         for (int y = 0; y < BOARD_SIZE; y++) {
@@ -96,7 +103,6 @@ public class PuzzleBoard extends GridLayout {
             System.out.println();
         }
 
-
         // クリックされたブロックと同じ色のブロックを消す
         for (int x = 0; x < BOARD_SIZE; x++) {
             for (int y = 0; y < BOARD_SIZE; y++) {
@@ -104,7 +110,7 @@ public class PuzzleBoard extends GridLayout {
                     blocks[y][x].printInfo();
 //                    this.removeView(blocks[y][x]);
                     blocks[y][x].setBlockType(-1);
-
+                    disappearedBlockCount++;
                 }
             }
         }
@@ -139,6 +145,9 @@ public class PuzzleBoard extends GridLayout {
             }
             System.out.println();
         }
+
+        // 得点を加算
+        score += (1 << targetColor) * disappearedBlockCount * disappearedBlockCount;
     }
 
     public PuzzleBlock getBlock(int row, int col) {

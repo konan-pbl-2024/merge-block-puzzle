@@ -1,5 +1,6 @@
 package com.example.merge_block_puzzle;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -45,7 +46,10 @@ public class PuzzleActivity extends AppCompatActivity {
             public void onClicksRemaining(int clicksRemaining) {
                 clicksRemainingTextView.setText("残り操作回数: " + clicksRemaining);
                 if (clicksRemaining <= 0) {
-                    // ゲームオーバーの処理（必要に応じて実装）
+                // ゲームオーバーの処理（必要に応じて実装）
+                Intent intent = new Intent(PuzzleActivity.this, ResultActivity.class);
+                intent.putExtra("FINAL_SCORE", puzzleBoard.getScore());
+                startActivity(intent);
                 }
             }
         });
@@ -58,9 +62,8 @@ public class PuzzleActivity extends AppCompatActivity {
         });
     }
 
-
-    public int getScore() {
-        return puzzleBoard.getScore();
-    }
+    // public int getScore() {
+    //     return puzzleBoard.getScore();
+    // }
 }
 

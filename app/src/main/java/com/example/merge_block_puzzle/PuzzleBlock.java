@@ -1,93 +1,73 @@
 package com.example.merge_block_puzzle;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.AttributeSet;
-import android.widget.ImageButton;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
+import androidx.appcompat.widget.AppCompatButton;
 
-@SuppressLint("AppCompatCustomView")
-public class PuzzleBlock extends ImageButton {
+public class PuzzleBlock extends AppCompatButton {
     private int blockType;
-    private static final int[] imageResourceIds = {
-            R.drawable.block1,
-            R.drawable.block2,
-            R.drawable.block3,
-            R.drawable.block4,
-            R.drawable.block1,
-            R.drawable.block2,
-            R.drawable.block3,
-            R.drawable.block4,
-    };
-    private static final int BLOCK_SIZE = 200;
-
-    private static final int BLOCK_TYPE_COUNT = 3;
-    private static final int MAX_BLOCK_NUM = imageResourceIds.length;
-    private int posX;
-    private int posY;
+    private int positionX;
+    private int positionY;
 
     public PuzzleBlock(Context context) {
         super(context);
         init();
     }
 
-    public PuzzleBlock(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
-    }
-
-    public PuzzleBlock(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init();
-    }
-
     private void init() {
-        this.blockType = (int) (Math.random() * BLOCK_TYPE_COUNT);
-        this.setImageResource(imageResourceIds[blockType]);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(BLOCK_SIZE, BLOCK_SIZE);
-        this.setLayoutParams(params);
-        this.setScaleType(ScaleType.CENTER_CROP);
-        this.setPadding(0, 0, 0, 0);
-        this.setAdjustViewBounds(true);
-
-        this.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
+        // 初期のブロックタイプをランダムに設定（0～2）
+        setBlockType((int) (Math.random() * 3));
     }
 
-
-    public void setOnBlockClickListener(OnClickListener listener) {
-        this.setOnClickListener(listener);
+    public void setBlockType(int type) {
+        this.blockType = type;
+        updateAppearance();
     }
 
     public int getBlockType() {
         return blockType;
     }
 
-    public void setBlockType(int blockType) {
-        this.blockType = blockType;
-        if (blockType != -1) {
-            this.setImageResource(imageResourceIds[blockType]);
+    private void updateAppearance() {
+        // ブロックタイプに応じて外観を変更
+        switch (blockType) {
+            case 0:
+                setBackgroundColor(0xFFE57373); // 赤
+                break;
+            case 1:
+                setBackgroundColor(0xFF81C784); // 緑
+                break;
+            case 2:
+                setBackgroundColor(0xFF64B5F6); // 青
+                break;
+            case 3:
+                setBackgroundColor(0xFFFFD54F); // 黄色
+                break;
+            case 4:
+                setBackgroundColor(0xFFBA68C8); // 紫
+                break;
+            case 5:
+                setBackgroundColor(0xFFA1887F); // 茶色
+                break;
+            default:
+                setBackgroundColor(0x00000000); // 透明
+                break;
         }
     }
 
     public void setPosition(int x, int y) {
-        this.posX = (int) x;
-        this.posY = (int) y;
+        this.positionX = x;
+        this.positionY = y;
     }
 
     public int getPositionX() {
-        return posX;
+        return positionX;
     }
 
     public int getPositionY() {
-        return posY;
+        return positionY;
     }
 
-    public void printInfo() {
-        System.out.println("posX: " + posX + ", posY: " + posY + ", blockType: " + blockType);
-    }
-
-    public int getMaxBlockNum() {
-        return MAX_BLOCK_NUM;
+    public void setOnBlockClickListener(OnClickListener listener) {
+        this.setOnClickListener(listener);
     }
 }

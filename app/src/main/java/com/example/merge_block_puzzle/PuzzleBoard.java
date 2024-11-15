@@ -13,7 +13,7 @@ public class PuzzleBoard extends GridLayout {
     private static final int BOARD_SIZE = 6;
     private PuzzleBlock[][] blocks;
     private int currentBlockTypeCount = 3;
-    private int score = 0;
+//    private int score = 0;
 
     public PuzzleBoard(Context context) {
         super(context);
@@ -31,7 +31,8 @@ public class PuzzleBoard extends GridLayout {
     }
 
     public int getScore() {
-        return score;
+//        return score;
+        return 0;
     }
 
     private void init(Context context) {
@@ -147,7 +148,8 @@ public class PuzzleBoard extends GridLayout {
         }
 
         // 得点を加算
-        score += (1 << targetColor) * disappearedBlockCount * disappearedBlockCount;
+//        score += (1 << targetColor) * disappearedBlockCount * disappearedBlockCount;
+        PuzzleActivity.score += (1 << targetColor) * disappearedBlockCount * disappearedBlockCount;
     }
 
     public PuzzleBlock getBlock(int row, int col) {

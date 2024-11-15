@@ -11,6 +11,7 @@ import androidx.gridlayout.widget.GridLayout;
 
 public class PuzzleActivity extends AppCompatActivity {
     com.example.merge_block_puzzle.PuzzleBoard puzzleBoard;
+    public static int score = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class PuzzleActivity extends AppCompatActivity {
         });
     }
 
-    public int getScore() {
-        return puzzleBoard.getScore();
-    }
+//    public int getScore() {
+//        return puzzleBoard.getScore();
+//    }
 }

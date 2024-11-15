@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -39,8 +40,8 @@ public class PuzzleBoard extends GridLayout {
     }
 
     public int getScore() {
-//        return score;
-        return 0;
+        return score;
+//        return 0;
     }
 
     private void init(Context context) {
@@ -127,11 +128,18 @@ public class PuzzleBoard extends GridLayout {
                 if (newX >= 0 && newX < BOARD_SIZE && newY >= 0 && newY < BOARD_SIZE &&
                         !visited[newY][newX] && blocks[newY][newX].getBlockType() == targetColor) {
                     queue.add(new int[]{newY, newX});
+                    disappearedBlockCount++;
                     visited[newY][newX] = true;
                 }
             }
         }
         visited[j][i] = false;
+
+        if (disappearedBlockCount < 2) {
+            // 2つ以上つながっていないと消せないことをToastで表示
+            Toast.makeText(getContext(), "2つ以上つなげてください", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         // クリックされたブロックのタイプを1つ上げる（最大タイプを超えないように）
         if (blocks[j][i].getBlockType() < TOTAL_BLOCK_TYPES - 1) {
@@ -143,7 +151,6 @@ public class PuzzleBoard extends GridLayout {
             for (int y = 0; y < BOARD_SIZE; y++) {
                 if (visited[y][x]) {
                     blocks[y][x].setBlockType(-1);
-                    disappearedBlockCount++;
                 }
             }
         }

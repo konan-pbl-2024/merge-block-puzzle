@@ -46,10 +46,10 @@ public class PuzzleActivity extends AppCompatActivity {
             public void onClicksRemaining(int clicksRemaining) {
                 clicksRemainingTextView.setText("残り操作回数: " + clicksRemaining);
                 if (clicksRemaining <= 0) {
-                // ゲームオーバーの処理（必要に応じて実装）
-                Intent intent = new Intent(PuzzleActivity.this, ResultActivity.class);
-                intent.putExtra("FINAL_SCORE", puzzleBoard.getScore());
-                startActivity(intent);
+                    // ゲームオーバーの処理（必要に応じて実装）
+                    Intent intent = new Intent(PuzzleActivity.this, ResultActivity.class);
+                    intent.putExtra("FINAL_SCORE", puzzleBoard.getScore());
+                    startActivity(intent);
                 }
             }
         });

@@ -25,6 +25,7 @@ public class PuzzleBlock extends AppCompatImageButton {
         updateAppearance();
     }
 
+
     public int getBlockType() {
         return blockType;
     }

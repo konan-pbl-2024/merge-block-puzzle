@@ -181,9 +181,9 @@ public class PuzzleBoard extends GridLayout {
         }
     }
 
-    public int getScore() {
-        return score;
-    }
+//    public int getScore() {
+//        return score;
+//    }
 
     public void setOnScoreChangeListener(OnScoreChangeListener listener) {
         this.scoreChangeListener = listener;

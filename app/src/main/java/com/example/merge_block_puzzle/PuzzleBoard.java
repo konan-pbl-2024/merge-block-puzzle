@@ -179,7 +179,7 @@ public class PuzzleBoard extends GridLayout {
 
         // スコアを更新（ブロックタイプが高いほど高得点）
         int blockValue = targetColor + 1; // ブロックタイプは0から始まるため+1
-        score += blockValue * (disappearedBlockCount + 1) * (disappearedBlockCount + 1);
+        score += (1 << blockValue) * (disappearedBlockCount + 1) * (disappearedBlockCount + 1);
 
         // スコア変更をリスナーに通知
         if (scoreChangeListener != null) {
